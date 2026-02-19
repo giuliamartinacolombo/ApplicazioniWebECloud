@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SN4M – Community</title>
+
+  <!-- Stile base come home -->
+  <link rel="stylesheet" href="css/homepage.css" />
+  <!-- Stile tiles/modal come playlist -->
+  <link rel="stylesheet" href="css/playlists.css" />
+  <!-- Aggiunte community -->
+  <link rel="stylesheet" href="css/community.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Navigazione laterale">
+      <div class="sidebar__top">
+        <div class="sbBrand" aria-hidden="true">
+          <div class="sbBrand__dot"></div>
+        </div>
+
+        <nav class="sbNav">
+          <a class="sbItem" href="homepage.html" title="Home">
+            <span class="sbIcon">🏠</span>
+            <span class="sbLabel">Home</span>
+          </a>
+
+          <a class="sbItem" href="playlists.html" title="Playlist">
+            <span class="sbIcon">🎵</span>
+            <span class="sbLabel">Playlist</span>
+          </a>
+
+          <a class="sbItem isActive" href="community.html" title="Community">
+            <span class="sbIcon">👥</span>
+            <span class="sbLabel">Community</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar__bottom">
+        <div class="sbHint">
+          <span class="sbIcon">🎧</span>
+          <span class="sbLabel">SN4M</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+
+      <!-- TOP BAR -->
+      <header class="top-bar">
+        <div class="logo">
+          <img src="media/logo.png" alt="SN4M" id="logoBtn">
+        </div>
+
+        <div class="search-box">
+          <input type="text" placeholder="Cerca canzoni, playlist o utenti">
+        </div>
+
+        <div class="profile" title="Profilo">
+          <img id="profileImg" alt="Profilo utente">
+        </div>
+      </header>
+
+      <main class="page">
+
+        <!-- TUTTE LE COMMUNITY -->
+        <section class="card card--primary card--playlists" id="allCommunities">
+          <div class="card__head">
+            <div class="headLeft">
+              <h2>Community musicali</h2>
+              <span class="sub">Cerca community o creane una nuova. Clicca sulla copertina per i dettagli.</span>
+            </div>
+
+            <div class="headRight">
+              <input id="filterAllCommunities" class="miniInput" type="text" placeholder="Filtra..." />
+              <button class="btn primary" id="createCommunityBtn" type="button">+ Crea community</button>
+            </div>
+          </div>
+
+          <div class="playlistGrid playlistGrid--all playlistGrid--tiles" id="communityGrid"></div>
+
+          <div class="empty" id="communityEmpty" hidden>
+            <p>Nessuna community trovata. Clicca su <b>Crea community</b> per iniziare.</p>
+          </div>
+        </section>
+
+        <!-- LE MIE COMMUNITY -->
+        <section class="card card--primary card--playlists" id="myCommunities" style="margin-top:16px;">
+          <div class="card__head">
+            <div class="headLeft">
+              <h2>Le mie community</h2>
+              <span class="sub">Solo le community di cui fai parte (incluse quelle che hai creato).</span>
+            </div>
+
+            <div class="headRight">
+              <input id="filterMyCommunities" class="miniInput" type="text" placeholder="Filtra..." />
+            </div>
+          </div>
+
+          <div class="playlistGrid playlistGrid--all playlistGrid--tiles" id="myCommunityGrid"></div>
+
+          <div class="empty" id="myCommunityEmpty" hidden>
+            <p>Non fai ancora parte di nessuna community.</p>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- MODAL CREA / MODIFICA -->
+      <div class="modal" id="communityModal" aria-hidden="true">
+        <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="communityModalTitle">
+          <div class="modal__head">
+            <h3 id="communityModalTitle">Crea community</h3>
+            <button class="iconBtn" id="closeCommunityModalBtn" aria-label="Chiudi">✕</button>
+          </div>
+
+          <form class="modal__form" id="communityForm">
+            <div class="field">
+              <label for="coTitle">Titolo</label>
+              <input id="coTitle" type="text" placeholder="Es: Indie Italia" required />
+            </div>
+
+            <div class="field">
+              <label for="coDesc">Descrizione</label>
+              <textarea id="coDesc" rows="3" placeholder="Di cosa parla questa community?" required></textarea>
+            </div>
+
+            <div class="field">
+              <label for="coTags">Tag</label>
+              <input id="coTags" type="text" placeholder="Es: indie, rock, live" required />
+              <small class="hint">Separali con virgole.</small>
+            </div>
+
+            <div class="modal__actions">
+              <button class="btn ghost" type="button" id="cancelCommunityBtn">Annulla</button>
+              <button class="btn primary" type="submit" id="submitCommunityBtn">Crea</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- MODAL DETTAGLIO -->
+      <div class="modal" id="communityViewModal" aria-hidden="true">
+        <div class="modal__panel modal__panel--view" role="dialog" aria-modal="true" aria-labelledby="communityViewTitle">
+          <div class="modal__head">
+            <div class="viewHead">
+              <div class="viewCover" id="communityViewCover" aria-hidden="true"></div>
+              <div class="viewMeta">
+                <h3 id="communityViewTitle">Community</h3>
+                <p id="communityViewDesc" class="viewDesc"></p>
+                <div id="communityViewKpis" class="viewKpis"></div>
+              </div>
+            </div>
+
+            <button class="iconBtn" id="closeCommunityViewBtn" aria-label="Chiudi">✕</button>
+          </div>
+
+          <div class="modal__body">
+            <div class="coSection">
+              <h4 class="coSection__title">Tag</h4>
+              <div id="communityViewTags" class="coTags"></div>
+            </div>
+
+            <div class="coSection">
+              <h4 class="coSection__title">Azioni</h4>
+              <div class="coActions" id="communityViewActions"></div>
+              <div class="coHint" id="communityViewHint"></div>
+            </div>
+
+            <!--  SEZIONE PLAYLIST CONDIVISE (NUOVA) -->
+            <div class="coSection">
+              <h4 class="coSection__title">Playlist condivise</h4>
+
+              <div id="communityViewSharedGrid" class="playlistGrid playlistGrid--all playlistGrid--tiles"></div>
+
+              <div class="empty" id="communityViewSharedEmpty" hidden>
+                <p>Nessuna playlist condivisa in questa community.</p>
+              </div>
+
+              <!-- Dettaglio playlist selezionata (inline) -->
+              <div id="communitySharedDetails" class="coSharedDetails" hidden></div>
+            </div>
+
+          </div>
+
+          <div class="modal__actions">
+            <button class="btn ghost" type="button" id="closeCommunityViewBtn2">Chiudi</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/community.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+.coSection{
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.coSection__title{
+  margin: 0 0 10px;
+  font-size: 14px;
+  opacity: .9;
+}
+
+.coTags{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.coTag{
+  display:inline-flex;
+  align-items:center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  font-size: 12.5px;
+}
+
+.coActions{
+  display:flex;
+  flex-wrap: wrap;
+  gap:10px;
+  align-items:center;
+}
+
+.coHint{
+  margin-top: 10px;
+  opacity: .8;
+  font-size: 13px;
+}
+
+/* Popup: sezioni NON a filo bordo */
+#communityViewModal .coSection{
+  margin: 12px 18px;
+  padding: 14px 16px;
+  border-radius: 16px;
+}
+
+/* Popup un po’ più alto */
+#communityViewModal .modal__panel--view{
+  max-height: 78vh;
+}
+
+/* Footer popup (bottone Chiudi) */
+#communityViewModal .modal__actions{
+  padding: 18px 22px 24px 22px !important;
+}
+
+#communityViewModal #closeCommunityViewBtn2{
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+
+/* Cover community: premium (solo ombra/hover, NO puntini dentro l’SVG) */
+#communityGrid .plTile__cover img,
+#myCommunityGrid .plTile__cover img,
+#communityViewModal .viewCover img{
+  border-radius: 18px;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.35),
+    inset 0 0 0 1px rgba(255,255,255,.06);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+/* Hover SOLO sulle tile */
+#communityGrid .plTile:hover .plTile__cover img,
+#myCommunityGrid .plTile:hover .plTile__cover img{
+  transform: scale(1.03);
+  box-shadow:
+    0 14px 40px rgba(0,0,0,.45),
+    inset 0 0 0 1px rgba(255,255,255,.10);
+}
+
+/* =========================
+   PLAYLIST CONDIVISE (popup)
+   ========================= */
+
+.coSharedDetails{
+  margin-top: 12px;
+  padding: 14px 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+.coSharedDetails__head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.coSharedDetails__title{
+  margin: 0;
+  font-size: 15px;
+}
+
+.coSharedDetails__sub{
+  margin: 4px 0 0;
+  opacity: .85;
+  font-size: 13px;
+}
+
+.coSharedSongList{
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.coSharedSong{
+  display:flex;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 10px 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.coSharedSong__left{
+  min-width: 0;
+}
+
+.coSharedSong__name{
+  margin:0;
+  font-size: 13.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.coSharedSong__meta{
+  margin: 2px 0 0;
+  opacity: .8;
+  font-size: 12.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.coSharedSong__dur{
+  opacity: .85;
+  font-size: 12.5px;
+  white-space: nowrap;
+}

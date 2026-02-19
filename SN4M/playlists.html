@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SN4M – Playlist</title>
+
+  <!-- riuso lo stile della home -->
+  <link rel="stylesheet" href="css/homepage.css" />
+  <!-- piccole aggiunte solo per questa pagina -->
+  <link rel="stylesheet" href="css/playlists.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Navigazione laterale">
+      <div class="sidebar__top">
+        <div class="sbBrand" aria-hidden="true">
+          <div class="sbBrand__dot"></div>
+        </div>
+
+        <nav class="sbNav">
+          <a class="sbItem" href="homepage.html" title="Dashboard">
+            <span class="sbIcon">🏠</span>
+            <span class="sbLabel">Home</span>
+          </a>
+
+          <a class="sbItem isActive" href="playlists.html" title="Playlist">
+            <span class="sbIcon">🎵</span>
+            <span class="sbLabel">Playlist</span>
+          </a>
+
+          <a class="sbItem" href="community.html" title="Community">
+            <span class="sbIcon">👥</span>
+            <span class="sbLabel">Community</span>
+          </a>
+        </nav>
+
+        <!-- ✅ RIMOSSO: bottone "Crea" in sidebar -->
+      </div>
+
+      <div class="sidebar__bottom">
+        <div class="sbHint">
+          <span class="sbIcon">🎧</span>
+          <span class="sbLabel">SN4M</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+
+      <!-- TOP BAR -->
+      <header class="top-bar">
+        <div class="logo">
+          <img src="media/logo.png" alt="SN4M" id="logoBtn">
+        </div>
+
+        <div class="search-box">
+          <input type="text" placeholder="Cerca canzoni, playlist o utenti">
+        </div>
+
+        <div class="profile" title="Profilo">
+          <img id="profileImg" alt="Profilo utente">
+        </div>
+      </header>
+
+      <main class="page">
+
+        <section class="card card--primary card--playlists" id="allPlaylists">
+          <div class="card__head">
+            <div class="headLeft">
+              <h2>Tutte le tue playlist</h2>
+              <span class="sub">Clicca sulla copertina per aprire la playlist completa.</span>
+            </div>
+
+            <div class="headRight">
+              <input id="filterAllPlaylists" class="miniInput" type="text" placeholder="Filtra..." />
+              <button class="btn primary" id="createPlaylistBtn" type="button">+ Crea playlist</button>
+            </div>
+          </div>
+
+          <div class="playlistGrid playlistGrid--all playlistGrid--tiles" id="allPlaylistGrid"></div>
+
+          <div class="empty" id="allPlaylistEmpty" hidden>
+            <p>Nessuna playlist ancora. Clicca su <b>Crea playlist</b> per iniziare.</p>
+          </div>
+        </section>
+
+        <section class="card card--primary card--playlists" id="importedPlaylistsSection">
+  <div class="card__head">
+    <div class="headLeft">
+      <h2>Playlist importate</h2>
+      <span class="sub">Playlist che hai importato dalle community.</span>
+    </div>
+
+    
+    <div class="headRight">
+      <!-- <input id="filterImportedPlaylists" class="miniInput" type="text" placeholder="Filtra importate..." /> -->
+    </div>
+  </div>
+
+  <div id="importedPlaylistGrid" class="playlistGrid playlistGrid--all playlistGrid--tiles"></div>
+
+  <div id="importedPlaylistEmpty" class="empty" hidden>
+    <p>Non hai ancora importato nessuna playlist.</p>
+  </div>
+</section>
+
+      </main>
+
+      <!-- MODAL CREA / MODIFICA PLAYLIST -->
+      <div class="modal" id="playlistModal" aria-hidden="true">
+        <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+          <div class="modal__head">
+            <h3 id="modalTitle">Crea playlist</h3>
+            <button class="iconBtn" id="closeModalBtn" aria-label="Chiudi">✕</button>
+          </div>
+
+          <form class="modal__form" id="playlistForm">
+            <div class="field">
+              <label for="plTitle">Titolo</label>
+              <input id="plTitle" type="text" placeholder="Es: Chill Vibes" required />
+            </div>
+
+            <div class="field">
+              <label for="plDesc">Descrizione</label>
+              <textarea id="plDesc" rows="3" placeholder="Una breve descrizione." required></textarea>
+            </div>
+
+            <div class="field">
+              <label for="plTags">Tag</label>
+              <input id="plTags" type="text" placeholder="Es: relax, indie, sera" required />
+              <small class="hint">Separali con virgole.</small>
+            </div>
+
+            <!-- Aggiungi brani (Spotify) -->
+            <div class="field">
+              <label>Aggiungi canzoni</label>
+
+              <div style="display:flex; gap:10px; align-items:center;">
+                <input id="trackQuery" type="text" placeholder="Cerca un brano o un artista..." />
+                <button class="btn secondary" type="button" id="trackSearchBtn">Cerca</button>
+              </div>
+
+              <div id="trackResults" style="margin-top:10px;"></div>
+            </div>
+
+            <!-- brani selezionati -->
+            <div class="field">
+              <label>Brani selezionati</label>
+              <div id="selectedTracks" style="display:flex; flex-direction:column; gap:8px;"></div>
+            </div>
+
+            <div class="modal__actions">
+              <button class="btn ghost" type="button" id="cancelBtn">Annulla</button>
+              <button class="btn primary" type="submit" id="submitPlaylistBtn">Crea</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- MODAL DETTAGLIO PLAYLIST (click cover) -->
+      <div class="modal" id="playlistViewModal" aria-hidden="true">
+        <div class="modal__panel modal__panel--view" role="dialog" aria-modal="true" aria-labelledby="viewTitle">
+          <div class="modal__head">
+            <div class="viewHead">
+              <div class="viewCover" id="viewCover" aria-hidden="true"></div>
+              <div class="viewMeta">
+                <h3 id="viewTitle">Playlist</h3>
+                <p id="viewDesc" class="viewDesc"></p>
+                <div id="viewKpis" class="viewKpis"></div>
+              </div>
+            </div>
+
+            <button class="iconBtn" id="closeViewBtn" aria-label="Chiudi">✕</button>
+          </div>
+
+          <div class="modal__body">
+            <div class="tracksList" id="viewTracks"></div>
+          </div>
+
+          <div class="modal__actions">
+            <button class="btn ghost" type="button" id="closeViewBtn2">Chiudi</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+    <!-- MODAL CONDIVISIONE PLAYLIST -->
+    <div id="sharePlModal" class="modalOverlay hidden" aria-hidden="true">
+      <div class="modalCard" role="dialog" aria-modal="true" aria-labelledby="sharePlTitle">
+        <button id="sharePlClose" class="modalCloseBtn" type="button" aria-label="Chiudi">✕</button>
+
+        <h2 id="sharePlTitle" class="modalTitle" style="margin-bottom:10px;">Condividi playlist</h2>
+        <p style="margin:0 0 14px 0; color:rgba(255,255,255,.75);">
+          Seleziona le community in cui rendere visibile questa playlist (solo ai membri).
+        </p>
+
+        <div id="sharePlInfo" class="chip" style="margin-bottom:12px;"></div>
+
+        <div id="sharePlCommunities" class="sharePlList"></div>
+
+        <div class="plModalActions" style="margin-top:14px;">
+          <button class="btn ghost" id="sharePlClearBtn" type="button">Rendi privata</button>
+          <button class="btn primary" id="sharePlSaveBtn" type="button">Salva</button>
+        </div>
+      </div>
+    </div>
+
+  <script src="js/playlists.js"></script>
+</body>
+</html>

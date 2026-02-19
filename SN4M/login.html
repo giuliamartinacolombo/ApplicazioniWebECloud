@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>SN4M – Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body>
+
+<div class="page">
+
+  <div class="phone">
+    <div class="card">
+
+      <a href="landing_page.html" class="back">‹</a>
+
+      <!-- vinile decorativo alto -->
+      <div class="vinyl vinyl-top"></div>
+      <!-- vinile decorativo basso -->
+      <div class="vinyl vinyl-bottom"></div>
+
+      <div class="content">
+        <h1>Ciao,<br><span>Bentornato/a!</span></h1>
+
+        <form class="form" id="loginForm">
+          <input type="text" name="username" placeholder="Username" required minlength="3" maxlength="20" />
+          <input type="password" name= "password" placeholder="Password" required />
+
+          <a href="forgot_password.html" class="forgot">Password dimenticata?</a>
+
+          <button type="submit" class="btn">Login</button>
+        </form>
+
+        <p class="signup">
+          Non hai un account?
+          <a href="register.html">Registrati</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/login.js"></script>
+
+</body>
+</html>

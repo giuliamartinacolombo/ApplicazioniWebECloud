@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>SN4M – Registrazione</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/register.css" />
+</head>
+<body>
+
+<div class="page">
+  <div class="phone">
+    <div class="card">
+
+      <a href="landing_page.html" class="back">‹</a>
+
+      <!-- vinili decorativi -->
+      <div class="vinyl vinyl-top" aria-hidden="true"></div>
+      <div class="vinyl vinyl-bottom" aria-hidden="true"></div>
+
+      <div class="content">
+        <h1>Crea il tuo<br><span>account SN4M</span></h1>
+        <p class="subtitle">Registrati e personalizza la tua esperienza musicale.</p>
+
+        <form class="form" id="registerForm" autocomplete="on">
+
+          <input type="text" name="username" placeholder="Username" required minlength="3" maxlength="20" />
+          <input type="email" name="email" placeholder="Indirizzo email" required />
+          <input type="password" name="password" placeholder="Password" required minlength="8" />
+
+          <!-- GENERI (DROPDOWN MULTI) -->
+          <div class="block">
+            <div class="block-head">
+              <span class="label">Generi musicali preferiti</span>
+              <span class="hint">Seleziona uno o più generi</span>
+            </div>
+
+            <div class="multi" id="genreMulti">
+              <button type="button" class="multi-btn" aria-haspopup="listbox" aria-expanded="false">
+                Seleziona generi…
+                <span class="chev" aria-hidden="true">▾</span>
+              </button>
+
+              <div class="multi-panel" role="listbox" aria-label="Generi musicali">
+
+                <!-- A -->
+                <label class="opt"><input type="checkbox" value="Alternative"><span>Alternative</span></label>
+                <label class="opt"><input type="checkbox" value="Ambient"><span>Ambient</span></label>
+
+                <!-- B -->
+                <label class="opt"><input type="checkbox" value="Blues"><span>Blues</span></label>
+
+                <!-- C -->
+                <label class="opt"><input type="checkbox" value="Cantautorale"><span>Cantautorale</span></label>
+                <label class="opt"><input type="checkbox" value="Classica"><span>Classica</span></label>
+                <label class="opt"><input type="checkbox" value="Commerciale"><span>Commerciale</span></label>
+                <label class="opt"><input type="checkbox" value="Colonne sonore"><span>Colonne sonore</span></label>
+                <label class="opt"><input type="checkbox" value="Country"><span>Country</span></label>
+
+                <!-- D -->
+                <label class="opt"><input type="checkbox" value="Dance"><span>Dance</span></label>
+                <label class="opt"><input type="checkbox" value="Disco"><span>Disco</span></label>
+
+                <!-- E -->
+                <label class="opt"><input type="checkbox" value="EDM"><span>EDM</span></label>
+                <label class="opt"><input type="checkbox" value="Elettronica"><span>Elettronica</span></label>
+
+                <!-- F -->
+                <label class="opt"><input type="checkbox" value="Folk"><span>Folk</span></label>
+                <label class="opt"><input type="checkbox" value="Funk"><span>Funk</span></label>
+
+                <!-- G -->
+                <label class="opt"><input type="checkbox" value="Gospel"><span>Gospel</span></label>
+
+                <!-- H -->
+                <label class="opt"><input type="checkbox" value="Hard Rock"><span>Hard Rock</span></label>
+                <label class="opt"><input type="checkbox" value="Hip Hop"><span>Hip Hop</span></label>
+                <label class="opt"><input type="checkbox" value="House"><span>House</span></label>
+
+                <!-- I -->
+                <label class="opt"><input type="checkbox" value="Indie"><span>Indie</span></label>
+
+                <!-- J -->
+                <label class="opt"><input type="checkbox" value="Jazz"><span>Jazz</span></label>
+
+                <!-- K -->
+                <label class="opt"><input type="checkbox" value="K-Pop"><span>K-Pop</span></label>
+
+                <!-- L -->
+                <label class="opt"><input type="checkbox" value="Latin"><span>Latin</span></label>
+
+                <!-- M -->
+                <label class="opt"><input type="checkbox" value="Metal"><span>Metal</span></label>
+
+                <!-- P -->
+                <label class="opt"><input type="checkbox" value="Pop"><span>Pop</span></label>
+                <label class="opt"><input type="checkbox" value="Punk"><span>Punk</span></label>
+
+                <!-- R -->
+                <label class="opt"><input type="checkbox" value="R&amp;B"><span>R&amp;B</span></label>
+                <label class="opt"><input type="checkbox" value="Rap"><span>Rap</span></label>
+                <label class="opt"><input type="checkbox" value="Reggae"><span>Reggae</span></label>
+                <label class="opt"><input type="checkbox" value="Rock"><span>Rock</span></label>
+
+                <!-- S -->
+                <label class="opt"><input type="checkbox" value="Soul"><span>Soul</span></label>
+                <label class="opt"><input type="checkbox" value="Strumentale"><span>Strumentale</span></label>
+
+                <!-- T -->
+                <label class="opt"><input type="checkbox" value="Techno"><span>Techno</span></label>
+                <label class="opt"><input type="checkbox" value="Trap"><span>Trap</span></label>
+
+                <!-- W -->
+                <label class="opt"><input type="checkbox" value="World Music"><span>World Music</span></label>
+
+              </div>
+
+              <div class="multi-tags" aria-label="Generi selezionati"></div>
+
+              <input type="hidden" name="genres" id="genresHidden" />
+            </div>
+          </div>
+
+          <!-- ARTISTI -->
+          <div class="block">
+            <div class="block-head">
+              <span class="label">Gruppi / cantanti preferiti</span>
+              <span class="hint">Cercali e selezionali</span>
+            </div>
+
+            <div class="artist-search">
+              <div class="artist-search__row">
+                <input type="text" id="artistQuery" placeholder="Cerca un artista su Spotify…" />
+                <button type="button" class="btn btn--mini" id="artistSearchBtn">Cerca</button>
+              </div>
+
+              <div id="artistResults" class="artist-results" aria-label="Risultati ricerca artisti"></div>
+
+              <div id="artistTags" class="artist-tags" aria-label="Artisti selezionati"></div>
+
+              <input type="hidden" name="artists" id="artistsHidden" />
+            </div>
+          </div>
+
+          <!-- feedback errori (UI) -->
+          <p class="error" id="errorBox" role="alert" aria-live="polite"></p>
+
+          <button type="submit" class="btn">Registrati</button>
+        </form>
+
+        <p class="signup">
+          Hai già un account?
+          <a href="login.html">Login</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/register.js"></script>
+</body>
+</html>

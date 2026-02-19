@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SN4M – Home</title>
+  <link rel="stylesheet" href="css/homepage.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" aria-label="Navigazione laterale">
+    <div class="sidebar__top">
+      <div class="sbBrand" aria-hidden="true">
+        <div class="sbBrand__dot"></div>
+      </div>
+
+      <nav class="sbNav">
+        <a class="sbItem isActive" href="#">
+          <span class="sbIcon">🏠</span>
+          <span class="sbLabel">Home</span>
+        </a>
+
+        <a class="sbItem" href="playlists.html">
+          <span class="sbIcon">🎵</span>
+          <span class="sbLabel">Playlist</span>
+        </a>
+
+        <a class="sbItem" href="community.html">
+          <span class="sbIcon">👥</span>
+          <span class="sbLabel">Community</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar__bottom">
+      <div class="sbHint">
+        <span class="sbIcon">🎧</span>
+        <span class="sbLabel">SN4M</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <header class="top-bar">
+      <div class="logo">
+        <img src="media/logo.png" alt="SN4M" id="logoBtn">
+      </div>
+
+      <div class="search-box">
+        <input id="globalSearch" type="text" placeholder="Cerca canzoni, playlist o utenti" autocomplete="off">
+        <div class="searchDropdown" id="globalSearchResults" hidden></div>
+      </div>
+
+      <div class="profile">
+        <img id="profileImg" alt="Profilo utente">
+      </div>
+    </header>
+
+    <main class="page">
+
+      <!-- HERO -->
+      <section class="heroCard" id="heroTop">
+        <div class="heroCard__left">
+          <div class="heroCard__kicker">Bentornato/a!</div>
+
+          <h2 class="heroCard__title">
+            Ascolta i<br>brani più<br>di tendenza
+          </h2>
+
+          <p class="heroCard__desc">
+            Crea playlist, gestisci brani e condividi nelle community.
+          </p>
+
+          <div class="heroCard__actions">
+  <a class="btn primary" href="playlists.html">+ Crea playlist</a>
+  <a class="btn secondary" href="community.html">+ Crea community</a>
+</div>
+
+          <div class="hero__kpis hero__kpis--compact">
+            <div class="heroKpi">
+              <div class="heroKpi__n" id="heroPlCount">—</div>
+              <div class="heroKpi__l">playlist</div>
+            </div>
+            <div class="heroKpi">
+              <div class="heroKpi__n" id="heroCmCount">—</div>
+              <div class="heroKpi__l">community</div>
+            </div>
+            <div class="heroKpi">
+              <div class="heroKpi__n" id="heroShareCount">—</div>
+              <div class="heroKpi__l">condivisioni</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="heroCard__right" aria-hidden="true">
+          <img class="heroArt__img" src="media/hero-image.png" alt="">
+        </div>
+      </section>
+
+      <div class="grid">
+
+  <!-- PLAYLIST (HOME: ultime 4) -->
+  <section class="card card--primary" id="playlists">
+    <div class="card__head">
+      <div class="headLeft">
+        <h2>Le tue playlist</h2>
+        <span class="sub">Le tue ultime 4 playlist create</span>
+      </div>
+      <a class="btn secondary" href="playlists.html" style="text-decoration:none;">Vedi tutte</a>
+    </div>
+
+    <div class="homePlaylistsGrid" id="homeLastPlaylistsGrid"></div>
+
+    <div class="empty" id="homeLastPlaylistsEmpty" hidden>
+      <p>Nessuna playlist ancora.</p>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section class="card card--secondary" id="community">
+    <div class="card__head">
+      <div class="headLeft">
+        <h2>Community</h2>
+        <span class="sub">Le community a cui partecipi</span>
+      </div>
+      <a class="btn secondary" href="community.html" style="text-decoration:none;">Vedi tutte</a>
+    </div>
+
+    <div class="homeCommunityWrapper">
+      <div class="homeCommunityGrid" id="homeCommunityGrid"></div>
+    </div>
+
+    <div class="empty" id="homeCommunityEmpty" hidden>
+      <p>Non fai ancora parte di nessuna community.</p>
+    </div>
+  </section>
+
+  <!-- NUOVA CARD INDIPENDENTE (SOTTO LE ALTRE DUE) -->
+  <section class="card card--primary card--full" id="sharedSearch">
+    <div class="card__head card__head--stack">
+      <div class="headLeft">
+        <h2>Playlist delle tue community</h2>
+        <span class="sub">Cerca per tag o canzoni e importa nel tuo profilo</span>
+      </div>
+      <div class="chip" id="sharedScopeChip">—</div>
+    </div>
+
+    <div class="publicFilters">
+      <input id="sharedTagQuery" class="miniInput" placeholder="Cerca per tag (es: rock, chill)">
+      <input id="sharedSongQuery" class="miniInput" placeholder="Cerca per canzone o artista (es: Tony Boy)">
+    </div>
+
+    <div class="publicList" id="sharedList"></div>
+
+    <div class="empty" id="sharedEmpty" hidden>
+      <p>Nessuna playlist condivisa trovata nelle tue community.</p>
+    </div>
+  </section>
+
+</div>
+    </main>
+
+    <script src="js/homepage.js"></script>
+  </div>
+</div>
+
+<!-- MODAL DETTAGLI BRANO (SOLO INFO) -->
+<div id="trackModal" class="modalOverlay hidden" aria-hidden="true">
+  <div class="modalCard">
+    <button id="trackModalClose" class="modalCloseBtn">✕</button>
+    <div class="modalBody">
+      <img id="trackModalCover" class="modalCover">
+      <div class="modalInfo">
+        <h2 id="trackModalTitle"></h2>
+        <p id="trackModalArtist"></p>
+        <p id="trackModalGenre"></p>
+        <p id="trackModalDuration"></p>
+        <p id="trackModalYear"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

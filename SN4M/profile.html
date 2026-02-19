@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profilo utente - SN4M</title>
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+
+<body>
+  <header class="topBar">
+    <button id="logoBtn" class="logoBtn" type="button" aria-label="Vai alla landing">
+      <img src="media/logo.png" alt="SN4M logo" class="logoImg" />
+    </button>
+
+    <div class="profile" aria-label="Profilo">
+      <img id="profileImg" alt="Avatar profilo" />
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="card profileCard">
+      <div class="cardHead">
+        <div>
+          <h1 class="title">Profilo utente</h1>
+          <p class="sub">Modifica i tuoi dati e le tue preferenze.</p>
+        </div>
+
+        <div class="actions">
+          <button id="backBtn" class="btn ghost" type="button">Indietro</button>
+          <button id="deleteBtn" class="btn danger" type="button">Cancella account</button>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="box">
+          <h2 class="h2">Dati e preferenze</h2>
+
+          <form id="profileForm" autocomplete="off">
+            <label class="field">
+              <span class="label">Username</span>
+              <input id="username" class="input" type="text" />
+            </label>
+
+            <label class="field">
+              <span class="label">Email</span>
+              <input id="email" class="input" type="email" />
+            </label>
+
+            <!-- GENERI -->
+            <div class="field">
+              <div class="fieldHead">
+                <span class="label labelTitle">Generi musicali preferiti</span>
+                <span class="label labelHint">Seleziona uno o più generi</span>
+              </div>
+
+              <div class="selectBox" id="genresSelect">
+                <button id="genresBtn" class="selectBtn" type="button" aria-expanded="false">
+                  <span id="genresBtnText">Seleziona generi…</span>
+                  <span class="chev" aria-hidden="true">▾</span>
+                </button>
+
+                <div id="genresPanel" class="selectPanel hidden" role="listbox" aria-multiselectable="true">
+                  <div id="genresList" class="checkList"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ARTISTI -->
+            <div class="field">
+              <div class="fieldHead">
+                <span class="label labelTitle">Gruppi / cantanti preferiti</span>
+                <span class="label labelHint">Cercali e selezionali</span>
+              </div>
+
+              <div class="artistBox">
+                <div class="artistTop">
+                  <input id="artistSearch" class="input" type="text" placeholder="Cerca un artista..." />
+                  <button id="artistSearchBtn" class="btn ghost" type="button">Cerca</button>
+                </div>
+
+                <div class="artistScroller">
+                  <ul id="artistResults" class="artistList" aria-label="Risultati artisti"></ul>
+                </div>
+
+                <small class="hint">Max 8 artisti</small>
+              </div>
+            </div>
+
+            <div class="formActions">
+              <button class="btn primary" type="submit">Salva</button>
+              <button id="resetBtn" class="btn ghost" type="button">Ripristina</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL CONFERMA (chiuso di default) -->
+    <div id="confirmModal" class="modalOverlay" aria-hidden="true">
+      <div class="modalCard" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+        <h3 id="confirmTitle" class="modalTitle">Confermi eliminazione?</h3>
+        <p class="modalText">Questa azione elimina definitivamente l’account.</p>
+
+        <div class="modalActions">
+          <button id="confirmDeleteBtn" class="btn danger" type="button">Elimina</button>
+          <button id="cancelDeleteBtn" class="btn ghost" type="button">Annulla</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/profile.js"></script>
+</body>
+</html>

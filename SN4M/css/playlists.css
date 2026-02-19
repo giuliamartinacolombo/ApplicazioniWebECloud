@@ -1,0 +1,372 @@
+.headRight{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.playlistGrid--all{
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px){
+  .playlistGrid--all{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 780px){
+  .headRight{ flex-direction: column; align-items: stretch; }
+  .playlistGrid--all{ grid-template-columns: 1fr; }
+}
+
+/* ===== Modal più largo (spazio viola) ===== */
+#playlistModal .modal__panel{
+  width: min(980px, 94vw);
+  max-width: 980px;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+/* il contenuto interno può scrollare se è tanto */
+#playlistModal .modal__form{
+  max-height: calc(90vh - 72px);
+  overflow: auto;
+  padding-right: 6px;
+}
+
+/* ===============================
+   Brani selezionati – bottone Rimuovi
+   =============================== */
+
+/* riga del brano selezionato */
+#selectedTracks .resultRow{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 18px;   /* stacca dal bordo destro */
+}
+
+/* bottone Rimuovi */
+#selectedTracks .resultRow .linkBtn{
+  margin-left: 16px;     /* lo porta un filo a sinistra */
+  white-space: nowrap;
+}
+
+/* ===============================
+   NUOVO: Griglia stile Spotify
+   =============================== */
+
+.playlistGrid--tiles{
+  display:grid;
+  gap:14px;
+  margin-top: 14px;
+}
+
+.plTile{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.plTile__coverBtn{
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  outline: none;
+}
+
+.plTile__cover{
+  width: 75%;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
+  background: rgba(255,255,255,.06);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  overflow: hidden;
+}
+
+.plTile__cover img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display:block;
+  transform: scale(1.01);
+}
+
+.plTile__coverBtn:hover .plTile__cover img{
+  transform: scale(1.06);
+  transition: transform .22s ease;
+}
+
+/* SOTTO IMMAGINE: titolo + azioni */
+.plTile__bottom{
+  width: 75%;
+  margin: 0 auto;
+  display:flex;
+  align-items:flex-end;
+  justify-content: space-between;
+  gap:12px;
+}
+
+.plTile__meta{ min-width:0; }
+
+.plTile__title{
+  font-weight: 750;
+  font-size: 15px;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.plTile__sub{
+  opacity: .75;
+  font-size: 13px;
+  margin: 2px 0 0;
+}
+
+.plTile__actions{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex: 0 0 auto;
+}
+
+.plTile__actions .iconMini{
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  cursor: pointer;
+}
+
+.plTile__actions .iconMini:hover{
+  background: rgba(255,255,255,.10);
+}
+
+.plTile__actions .iconMini:active{
+  transform: translateY(1px);
+}
+
+/* ===============================
+   MODAL DETTAGLIO PLAYLIST
+   =============================== */
+
+#playlistViewModal .modal__panel--view{
+  width: min(980px, 94vw);
+  max-width: 980px;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+#playlistViewModal .modal__body{
+  padding: 14px 18px 18px;
+  overflow: auto;
+  max-height: calc(90vh - 160px);
+}
+
+.viewHead{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  min-width: 0;
+}
+
+.viewCover{
+  width: 84px;
+  height: 84px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.06);
+  overflow: hidden;
+  flex: 0 0 auto;
+  box-shadow: 0 10px 26px rgba(0,0,0,.35);
+}
+
+.viewCover img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+
+.viewMeta{
+  min-width: 0;
+}
+
+.viewDesc{
+  opacity: .8;
+  margin: 6px 0 10px;
+}
+
+.viewKpis{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.viewKpis .chip{
+  display:inline-flex;
+  align-items:center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  font-size: 12.5px;
+}
+
+.tracksList{
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trackRow{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content: space-between;
+  padding: 10px 10px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.trackLeft{
+  display:flex;
+  gap: 12px;
+  align-items:center;
+  min-width: 0;
+}
+
+.trackCover{
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  overflow:hidden;
+  flex: 0 0 auto;
+  background: rgba(255,255,255,.06);
+}
+
+.trackCover img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display:block;
+}
+
+.trackTxt{
+  min-width: 0;
+}
+
+.trackTitle{
+  font-weight: 750;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trackMeta{
+  opacity: .78;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trackDur{
+  opacity: .8;
+  font-variant-numeric: tabular-nums;
+  flex: 0 0 auto;
+}
+
+/* ======================================================
+   ICONE AZIONI - più leggibili su tema scuro
+   ====================================================== */
+.plTile__actions .iconMini{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #e5e7eb;
+  font-size: 15px;
+  line-height: 1;
+  transition: background .15s ease, color .15s ease, transform .05s ease;
+}
+
+.plTile__actions .iconMini:hover{
+  background: rgba(255,255,255,.14);
+  color: #ffffff;
+}
+
+.plTile__actions .iconMini[data-del]{
+  color: #f87171;
+}
+
+.plTile__actions .iconMini[data-del]:hover{
+  background: rgba(248,113,113,.15);
+  color: #fecaca;
+}
+
+/* lista community nel modal condivisione */
+.sharePlList{
+  display: grid;
+  gap: 10px;
+  max-height: 320px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.sharePlRow{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+}
+
+.sharePlRow__left{
+  min-width:0;
+}
+.sharePlRow__title{
+  margin:0;
+  font-weight:800;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.sharePlRow__sub{
+  margin:4px 0 0;
+  color: rgba(255,255,255,.7);
+  font-size: 12px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.sharePlToggle{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  flex: 0 0 auto;
+  font-size: 13px;
+  color: rgba(255,255,255,.85);
+}
+
+.sharePlToggle input{
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+/* Spazio tra "Tutte le tue playlist" e "Playlist importate" */
+#importedPlaylistsSection{
+  margin-top: 18px;
+}
+

@@ -1,0 +1,256 @@
+:root{
+  --card: #0e031b;
+  --card-2: #0e0118;
+
+  --text: #e9f1f1;
+  --muted: rgba(233,241,241,.72);
+
+  --accent: #a04fe2;
+  --accent-2: #6c27a5;
+
+  --stroke: rgba(255,255,255,.10);
+  --stroke-2: rgba(255,255,255,.06);
+
+  --radius: 28px;
+  --shadow: 0 20px 60px rgba(0,0,0,.45);
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+}
+
+/* background viola */
+.page{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  background:
+    radial-gradient(900px 500px at 20% 0%, rgba(160,79,226,.45), transparent 60%),
+    radial-gradient(900px 500px at 100% 30%, rgba(160,79,226,.35), transparent 60%),
+    linear-gradient(180deg, #2b0a46, #12021f);
+}
+
+/* mock telefono */
+.phone{
+  width: min(650px, 92vw);
+  aspect-ratio: auto;
+  padding: 12px;
+  height: 600px;
+  border-radius:36px;
+  background: rgba(0,0,0,.18);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow: 0 30px 90px rgba(0,0,0,.55);
+}
+
+/* card interna */
+.card{
+  position:relative;
+  height:100%;
+  border-radius:28px;
+  padding:22px;
+  background: linear-gradient(180deg, #0f0f0f, #070707);
+  border:1px solid rgba(255,255,255,.10);
+  overflow:hidden;
+}
+
+/* back */
+.back{
+  position:absolute;
+  top:18px;
+  left:18px;
+  width:40px;
+  height:40px;
+  border-radius:14px;
+  border:1px solid var(--stroke);
+  background: rgba(255,255,255,.04);
+  color:var(--text);
+  font-size:22px;
+  display:grid;
+  place-items:center;
+  text-decoration:none;
+}
+
+/* contenuto */
+.content{
+  position:relative;
+  z-index:2;
+  margin-top:60px;
+}
+
+h1{
+  margin:0 0 26px;
+  font-size:28px;
+  line-height:1.15;
+}
+
+h1 span{
+  font-weight:800;
+}
+
+/* form */
+.form{
+  display:grid;
+  gap:14px;
+}
+
+input{
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid var(--stroke-2);
+  background: rgba(255,255,255,.04);
+  color:var(--text);
+  font-size:15px;
+}
+
+input:focus{
+  outline:none;
+  border-color: var(--accent);
+}
+
+.forgot{
+  text-align:right;
+  font-size:13px;
+  color:var(--muted);
+  text-decoration:none;
+}
+
+/* bottone */
+.btn{
+  margin-top:8px;
+  padding:14px;
+  border-radius:16px;
+  border:none;
+  font-weight:800;
+  font-size:15px;
+  cursor:pointer;
+  color:#14051f;
+  background: linear-gradient(90deg, var(--accent), #f08bd8);
+}
+
+.btn:hover{
+  opacity:.9;
+}
+
+/* signup */
+.signup{
+  margin-top:22px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.signup a{
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:700;
+}
+
+/* VINILI */
+.vinyl{
+  position:absolute;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  opacity:.38;
+  z-index:1;
+
+  background:
+    /* highlight luce */
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(160,79,226,.35),
+      transparent 42%
+    ),
+    /* solchi */
+    repeating-radial-gradient(
+      circle,
+      rgba(255,255,255,.12) 0 1px,
+      rgba(255,255,255,0) 1px 6px
+    ),
+    /* corpo vinile */
+    radial-gradient(
+      circle at center,
+      #1a0c2b 0 58%,
+      #05000a 100%
+    );
+
+  border: 1px solid rgba(255,255,255,.14);
+
+  /* glow + profondità */
+  box-shadow:
+    0 0 0 1px rgba(160,79,226,.15),
+    0 0 35px rgba(160,79,226,.22),
+    0 25px 60px rgba(0,0,0,.55);
+
+  animation: spin 50s linear infinite;
+}
+
+.vinyl::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:150px;
+  height:150px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background-size: cover;
+  background-position: center;
+
+  border: 2px solid rgba(255,255,255,.28);
+  box-shadow:
+    0 0 0 2px rgba(160,79,226,.25),
+    0 8px 22px rgba(0,0,0,.55);
+
+  z-index:2;
+}
+
+
+.vinyl::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:28px;              /* foro realistico (50px era enorme) */
+  height:28px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+
+  background: radial-gradient(circle, #05000a 0 55%, #000 100%);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.18),
+    inset 0 0 6px rgba(255,255,255,.22);
+
+  z-index: 3;              /* ← QUESTO è il punto chiave */
+}
+
+.vinyl-top{
+  top:-60px;
+  right:-60px;
+}
+
+.vinyl-top::before{
+  background-image: url("../media/cantante-4.png");
+}
+
+.vinyl-bottom::before{
+  background-image: url("../media/cantante-5.png");
+}
+
+
+.vinyl-bottom{
+  bottom:-80px;
+  left:-80px;
+  animation-direction:reverse;
+}
+
+@keyframes spin{
+  to{ transform:rotate(360deg); }
+}
+
+
+
